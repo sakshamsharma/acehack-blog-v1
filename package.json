@@ -1,0 +1,46 @@
+{
+  "name": "AceHack",
+  "version": "0.0.1",
+  "description": "Saksham Sharma's homepage",
+  "keywords": [
+    "OpenShift",
+    "Node.js",
+    "application",
+    "openshift",
+    "acehack",
+    "AceHack"
+  ],
+  "author": {
+    "name": "Saksham",
+    "email": "saksham0808@gmail.com",
+    "url":  "http://acehack.com/"
+  },
+  "homepage": "http://acehack.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://gitub.com/openshift/nodejs-custom-version-openshift.git"
+  },
+
+  "engines": {
+    "node": ">= 0.12.0",
+    "npm": ">= 1.2.0"
+  },
+
+  "dependencies": {
+    "config-multipaas": "^0.1.0",
+    "express": "4.12.4",
+    "body-parser": "1.13.1",
+    "cors": "*",
+    "jade": "*",
+    "stylus": "*",
+    "nib": "*"
+  },
+  "devDependencies": {},
+  "bundleDependencies": [],
+
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "main": "server.js"
+}
