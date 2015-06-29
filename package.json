@@ -33,7 +33,8 @@
     "cors": "*",
     "jade": "*",
     "stylus": "*",
-    "nib": "*"
+    "nib": "*",
+    "node-markdown": "*"
   },
   "devDependencies": {},
   "bundleDependencies": [],
