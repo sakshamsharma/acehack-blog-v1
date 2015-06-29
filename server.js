@@ -85,12 +85,18 @@ app.get('/almanac', function(req, res) {
   fs.readFile("public/md/almanac.md", 'utf8', function(err, data) {
     if (err) res.render('viewer', { title: 'Error', md:md, markdownContent:"Sorry, the given file does not exist."})
     else
-      res.render('viewer', { title: 'Almanac', md:md, markdownContent:data})
+      connection.query('SELECT * from Technical', function(err, newtech, fields){
+        res.render('viewer', { title: 'Almanac', md:md, markdownContent:data, technical: newtech})
+      })
   })
 })
 
 app.get('/cv', function(req, res) {
   res.render('cv', { title: 'CV' })
+})
+
+app.get('/contact', function(req, res) {
+  res.render('contact', { title: 'Contact Me' })
 })
 
 app.listen(config.get('PORT'), config.get('IP'), function () {
