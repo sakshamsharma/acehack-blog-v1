@@ -34,7 +34,8 @@
     "jade": "*",
     "stylus": "*",
     "nib": "*",
-    "node-markdown": "*"
+    "node-markdown": "*",
+    "markdown": "*"
   },
   "devDependencies": {},
   "bundleDependencies": [],

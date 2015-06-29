@@ -43,11 +43,12 @@ app.get('/login', function (req, res)
 });
 
 app.get('/articles', function (req, res) {
+  res.render('articles', { title: 'Articles'})
 })
 
 app.get('/technical', function(req, res) {
   fs.readFile("public/md/" + req.query.aname + ".md", 'utf8', function(err, data) {
-    if (err) res.render('articles', { title: 'Articles', md:md, markdownContent:"Sorry, the given file does not exist."})
+    if (err) res.render('viewer', { title: 'Error', md:md, markdownContent:"Sorry, the given file does not exist."})
     else
       res.render('viewer', { title: 'Technical', md:md, markdownContent:data})
   })
@@ -55,7 +56,7 @@ app.get('/technical', function(req, res) {
 
 app.get('/musings', function(req, res) {
   fs.readFile("public/md/" + req.query.aname + ".md", 'utf8', function(err, data) {
-    if (err) res.render('articles', { title: 'Articles', md:md, markdownContent:"Sorry, the given file does not exist."})
+    if (err) res.render('viewer', { title: 'Error', md:md, markdownContent:"Sorry, the given file does not exist."})
     else
       res.render('viewer', { title: 'Musings', md:md, markdownContent:data})
   })
@@ -63,7 +64,7 @@ app.get('/musings', function(req, res) {
 
 app.get('/almanac', function(req, res) {
   fs.readFile("public/md/almanac.md", 'utf8', function(err, data) {
-    if (err) res.render('articles', { title: 'Articles', md:md, markdownContent:"Sorry, the given file does not exist."})
+    if (err) res.render('viewer', { title: 'Error', md:md, markdownContent:"Sorry, the given file does not exist."})
     else
       res.render('viewer', { title: 'Almanac', md:md, markdownContent:data})
   })

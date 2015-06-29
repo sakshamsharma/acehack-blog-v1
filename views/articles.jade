@@ -2,7 +2,16 @@ extend layout
 
 block content
   .content-body
-    != md(markdownContent)
+    :markdown
+      # Articles
+
+      ### Techincal
+
+      *  [Kickstart to Vim](/technical?aname=vim)
+
+      ### Musings
+
+      *  [My Voyage through the seas of programming](/musings?aname=voyage)
 
 block sidebar
   .widget
