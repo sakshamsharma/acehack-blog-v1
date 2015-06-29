@@ -1,14 +1,4 @@
-/*
- * Import nib
- */
-/*
- * Grab a custom font from Google
- */
 @import url("http://fonts.googleapis.com/css?family=Quicksand");
-/*
- * Store the main color and
- * background color as variables
- */
 body {
   font-family: 'Georgia';
   background-color: #faf9f0;
@@ -63,15 +53,9 @@ header a:hover {
   float: right;
 }
 .sidebar .widget {
-/*
-     * Note the lack of vendor
-     * prefixes here. Nib will
-     * add them for us
-     */
   -webkit-border-radius: 3px;
   border-radius: 3px;
   border: 1px solid #ccc;
-  margin-left: 20px;
   background-color: #faf9f0;
   -webkit-box-shadow: inset 0px 0px 0px 3px rgba(255,255,255,0.8), 0px 3px 0px -2px rgba(0,0,0,0.1);
   box-shadow: inset 0px 0px 0px 3px rgba(255,255,255,0.8), 0px 3px 0px -2px rgba(0,0,0,0.1);

@@ -54,7 +54,9 @@ app.get('/', function (req, res)
 });
 
 app.get('/articles', function (req, res) {
-  res.render('articles', { title: 'Articles'})
+  connection.query('SELECT * from Technical', function(err, rows, fields){
+    res.render('articles', { title: 'Articles', technical: rows})
+  })
 })
 
 app.get('/technical', function(req, res) {
