@@ -5,10 +5,25 @@ var cc          = require('config-multipaas'),
     cors        = require('cors'),
     stylus      = require('stylus'),
     nib         = require('nib'),
-    md          = require("node-markdown").Markdown
+    md          = require("node-markdown").Markdown,
+    mysql       = require('mysql')
 
 var config      = cc(),
     app         = express()
+
+
+var mysqlHost = process.env.OPENSHIFT_MYSQL_DB_HOST || 'localhost';
+var mysqlUser = process.env.OPENSHIFT_MYSQL_DB_USERNAME || 'root';
+var mysqlPass = process.env.OPENSHIFT_MYSQL_DB_PASSWORD || '0808';
+
+var connection = mysql.createConnection({
+  host     : mysqlHost,
+  user     : mysqlUser,
+  password : mysqlPass,
+  database : 'acehack'
+});
+
+connection.connect();
 
 app.use(bodyParser.json());
 app.use(express.static('static'));
@@ -27,19 +42,15 @@ app.use(stylus.middleware({
 }))
 app.use(express.static(__dirname + '/public'))
 
-
 app.get('/', function (req, res)
 {
   fs.readFile("public/md/reveries.md", 'utf8', function(err, data) {
     if (err) res.render('articles', { title: 'Articles', md:md, markdownContent:"Sorry, the given file does not exist."})
     else
-      res.render('index', { title: 'AceHack', md:md, markdownContent:data})
+      connection.query('SELECT * from Technical', function(err, rows, fields){
+        res.render('index', { title: 'AceHack', md:md, markdownContent:data, technical: rows})
+      })
   })
-});
-
-app.get('/login', function (req, res)
-{
-  res.render('login', { title: 'Login' })
 });
 
 app.get('/articles', function (req, res) {
@@ -47,18 +58,24 @@ app.get('/articles', function (req, res) {
 })
 
 app.get('/technical', function(req, res) {
-  fs.readFile("public/md/" + req.query.aname + ".md", 'utf8', function(err, data) {
+  connection.query('SELECT * from Technical WHERE Url = \'/technical?aname=' + req.query.aname + '\'', function(err, rows, fields){
     if (err) res.render('viewer', { title: 'Error', md:md, markdownContent:"Sorry, the given file does not exist."})
-    else
-      res.render('viewer', { title: 'Technical', md:md, markdownContent:data})
+    else {
+      var data = new Buffer(rows[0].Content, 'base64').toString()
+        connection.query('SELECT * from Technical', function(err, newtech, techfields){
+          res.render('viewer', { title: 'Technical', md:md, markdownContent:data, technical: newtech})
+      })
+    }
   })
 })
 
 app.get('/musings', function(req, res) {
-  fs.readFile("public/md/" + req.query.aname + ".md", 'utf8', function(err, data) {
+  connection.query('SELECT * from Musings WHERE Url = \'/musings?aname=' + req.query.aname + '\'', function(err, rows, fields){
     if (err) res.render('viewer', { title: 'Error', md:md, markdownContent:"Sorry, the given file does not exist."})
-    else
+    else {
+      var data = new Buffer(rows[0].Content, 'base64').toString()
       res.render('viewer', { title: 'Musings', md:md, markdownContent:data})
+    }
   })
 })
 

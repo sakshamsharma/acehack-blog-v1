@@ -26,6 +26,12 @@ html
       .col-sm-9
         block content
       .col-sm-3.sidebar
-        block sidebar
+        .widget
+          h1 New Articles
+          for item in technical
+            a(href= "#{item.Url}") #{item.Name}
+            p #{item.Snippet}
+          <hr>
+
     footer
       p Written from scratch in node with Express, Jade and Stylus

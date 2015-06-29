@@ -90,6 +90,10 @@ header a:hover {
   padding: 0px 10px;
   margin-bottom: 10px;
 }
+.sidebar .widget a {
+  margin-left: 10px;
+  align: center;
+}
 p {
   line-height: 1.8;
 }

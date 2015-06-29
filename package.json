@@ -35,7 +35,9 @@
     "stylus": "*",
     "nib": "*",
     "node-markdown": "*",
-    "markdown": "*"
+    "markdown": "*",
+    "jstransformer-markdown": "*",
+    "mysql": "*"
   },
   "devDependencies": {},
   "bundleDependencies": [],
