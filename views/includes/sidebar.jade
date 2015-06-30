@@ -1,0 +1,8 @@
+#sidebar
+  .widget
+    h1(style= 'text-align: center;') New Articles
+    for item in technical
+      a(href= "#{item.Url}") #{item.Name}
+      p #{item.Snippet}
+    <hr>
+

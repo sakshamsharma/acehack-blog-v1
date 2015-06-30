@@ -1,0 +1,28 @@
+doctype
+html
+  head
+    include ../includes/head.jade
+
+  body
+    header
+      include ../includes/header.jade
+
+    .container-fluid
+      .col-md-3
+        .col-md-2
+        .col-md-10.sidebar
+          .widget
+            h1(style= 'text-align: center;') Saksham Sharma
+            img.img-rounded.displayed(src= '/img/me.jpg' width= '70%')
+            div(style="margin-left: 12px; text-align: center;")
+              h4 B.Tech 2nd Year
+              h4 Computer Science and Engineering
+              h4 IIT Kanpur
+      .col-md-6
+        block content
+      .col-md-3
+        .col-md-10.sidebar
+          include ../includes/sidebar.jade
+
+    footer
+      include ../includes/footer.jade

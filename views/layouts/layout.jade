@@ -1,0 +1,22 @@
+doctype
+html
+  head
+    include ../includes/head.jade
+
+  body
+    header
+      include ../includes/header.jade
+
+    .container
+      .col-md-9
+        block content
+      .col-md-3.sidebar
+        .widget
+          h1 New Articles
+          for item in technical
+            a(href= "#{item.Url}") #{item.Name}
+            p #{item.Snippet}
+          <hr>
+
+    footer
+      include ../includes/footer.jade
