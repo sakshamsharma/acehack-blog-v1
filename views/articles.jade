@@ -1,18 +1,11 @@
-extend layout
+extend noside-layout
 
 block content
   .content-body
-    :markdown
-      # Articles
+    h1 Articles
 
-      ### Techincal
+    h3 Technical
 
-      *  [Kickstart to Vim](/technical?aname=vim)
-
-      *  [TTY Magic in Linux](/technical?aname=tty)
-
-      *  [Running Windows inside Arch (and never having to leave Arch again)](/technical?aname=vbox)
-
-      ### Musings
-
-      *  [My Voyage through the seas of programming](/musings?aname=voyage)
+    for item in technical
+      a(href= "#{item.Url}") #{item.Name}
+      p #{item.Snippet}
