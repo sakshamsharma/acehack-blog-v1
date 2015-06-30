@@ -61,7 +61,7 @@ app.get('/articles', function (req, res) {
 
 app.get('/technical', function(req, res) {
   connection.query('SELECT * from Technical WHERE Url = \'/technical?aname=' + req.query.aname + '\'', function(err, rows, fields){
-    if (err) res.render('viewer', { title: 'Error', md:md, markdownContent:"Sorry, the given file does not exist."})
+    if (err || rows.length == 0) res.render('error', { title: 'Error', md:md, markdownContent:"Sorry, the given file does not exist."})
     else {
       var data = new Buffer(rows[0].Content, 'base64').toString()
         connection.query('SELECT * from Technical', function(err, newtech, techfields){
@@ -73,7 +73,7 @@ app.get('/technical', function(req, res) {
 
 app.get('/musings', function(req, res) {
   connection.query('SELECT * from Musings WHERE Url = \'/musings?aname=' + req.query.aname + '\'', function(err, rows, fields){
-    if (err) res.render('viewer', { title: 'Error', md:md, markdownContent:"Sorry, the given file does not exist."})
+    if (err || rows.length == 0) res.render('error', { title: 'Error', md:md, markdownContent:"Sorry, the given file does not exist."})
     else {
       var data = new Buffer(rows[0].Content, 'base64').toString()
       res.render('viewer', { title: 'Musings', md:md, markdownContent:data})
