@@ -1,8 +1,13 @@
 #sidebar
   .widget
     h1(style= 'text-align: center;') New Articles
+    h3 Technical
     for item in technical
       a(href= "#{item.Url}") #{item.Name}
       p #{item.Snippet}
     <hr>
-
+    h3 Musings
+    for item in musings
+      a(href= "#{item.Url}") #{item.Name}
+      p #{item.Snippet}
+    <hr>

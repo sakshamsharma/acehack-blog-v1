@@ -75,6 +75,9 @@ img.displayed {
   border-radius: 2px 2px 0px 0px;
   margin-bottom: 10px;
 }
+.sidebar .widget h3 {
+  margin-left: 10px;
+}
 .sidebar .widget p {
   font-size: 13px;
   padding: 0px 10px;
