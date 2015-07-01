@@ -27,7 +27,6 @@ connection.connect();
 
 app.use(bodyParser.json());
 app.use(express.static('static'));
-app.use(cors());
 
 function compile(str, path) {
   return stylus(str)
