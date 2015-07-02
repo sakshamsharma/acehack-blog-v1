@@ -1,0 +1,131 @@
+doctype
+html
+  head
+    include ./includes/head.jade
+
+  body
+    header
+      include ./includes/header.jade
+
+    .container
+      .row
+        .col-sm-6
+          h2(align= "center") Skills
+          .table-wrap
+            table.table.table-hover.table-striped(id= "skillTable")
+              tbody
+                tr(id= "skill" data-href="#content1")
+                  td Web Development
+                tr(id= "skill" data-href="#content2")
+                  td Programming Languages
+                tr(id= "skill" data-href="#content3")
+                  td Operating Systems
+                tr(id= "skill" data-href="#content4")
+                  td App Development
+                tr(id= "skill" data-href="#content5")
+                  td Utilities
+                tr(id= "skill" data-href="#content6")
+                  td Web Frameworks
+                tr(id= "skill" data-href="#content7")
+                  td Hardware
+
+            div(id= "content1").skill-table
+              table.table.table-hover
+                tr
+                  td HTML/CSS
+                  td Proficient
+                tr
+                  td Node.js
+                  td Proficient
+                tr
+                  td Javascript
+                  td Intermediate
+                tr
+                  td Dart
+                  td Familiar
+                tr
+                  td PHP
+                  td Intermediate
+                tr
+                  td Scala
+                  td Intermediate
+
+            div(id= "content2").skill-table
+              table.table.table-hover
+                tr
+                  td C/C++
+                  td Proficient
+                tr
+                  td Python
+                  td Proficient
+                tr
+                  td Java
+                  td Proficient
+                tr
+                  td C#
+                  td Intermediate
+                tr
+                  td Shell Scripting
+                  td Proficient
+
+            div(id= "content3").skill-table
+              table.table.table-hover
+                tr
+                  td Arch Linux
+                  td Expert
+                tr
+                  td Debian based distributions
+                  td Proficient
+                tr
+                  td Microsoft Windows
+                  td Proficient
+
+            div(id= "content4").skill-table
+              table.table.table-hover
+                tr
+                  td Windows Phone App Development
+                  td Proficient
+                tr
+                  td Android App Development
+                  td Familiar
+
+            div(id= "content5").skill-table
+              table.table.table-hover
+                tr
+                  td Vim
+                  td Expert
+                tr
+                  td Git
+                  td Expert
+                tr
+                  td Microsoft Visual Studio
+                  td Proficient
+                tr
+                  td Matlab/Octave
+                  td Intermediate
+
+            div(id= "content6").skill-table
+              table.table.table-hover
+                tr
+                  td Node.js with Express.js and Jade
+                  td Proficient
+                tr
+                  td Scala with Akka
+                  td Intermediate
+
+            div(id= "content7").skill-table
+              table.table.table-hover
+                tr
+                  td Microsoft Kinect
+                  td Intermediate
+                tr
+                  td Arduino
+                  td Intermediate
+
+
+    script(src="https://code.jquery.com/jquery-1.9.1.min.js")
+    script(src= "/js/CV.js")
+
+
+    footer
+      include ./includes/footer.jade

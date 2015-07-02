@@ -106,6 +106,10 @@ app.get('/cv', function(req, res) {
   res.render('cv', { title: 'CV' })
 })
 
+app.get('/cvnew', function(req, res) {
+  res.render('cvnew', { title: 'CV' })
+})
+
 app.get('/contact', function(req, res) {
   res.render('contact', { title: 'Contact Me' })
 })

@@ -100,3 +100,19 @@ footer {
   padding-top: 5px;
   font-size: 13px;
 }
+/* For new CV */
+[id*=content] {
+  position: absolute;
+}
+.table-wrap {
+  position: relative;
+}
+.table-wrap #skill {
+  text-align: center;
+  font-size: 25px;
+}
+.skill-table {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
