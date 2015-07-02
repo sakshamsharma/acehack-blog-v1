@@ -114,6 +114,10 @@ app.get('/contact', function(req, res) {
   res.render('contact', { title: 'Contact Me' })
 })
 
+app.use(function(req, res) {
+  res.redirect(301, 'http://www.acehack.org')
+})
+
 app.listen(config.get('PORT'), config.get('IP'), function () {
   console.log("Listening on "+config.get('IP')+", port "+config.get('PORT'))
 });
