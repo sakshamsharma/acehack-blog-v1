@@ -69,7 +69,7 @@ app.get('/technical', function(req, res) {
       var data = new Buffer(rows[0].Content, 'base64').toString()
       connection.query('SELECT * from Technical', function(err, newtech, techfields){
         connection.query('SELECT * from Musings', function(err, newmus, fields){
-          res.render('viewer', { title: 'Technical', md:md, markdownContent:data, technical: newtech, musings: newmus})
+          res.render('viewer', { title: rows[0].Name, md:md, markdownContent:data, technical: newtech, musings: newmus})
         })
       })
     }
@@ -83,7 +83,7 @@ app.get('/musings', function(req, res) {
       var data = new Buffer(rows[0].Content, 'base64').toString()
       connection.query('SELECT * from Technical', function(err, newtech, techfields){
         connection.query('SELECT * from Musings', function(err, newmus, fields){
-          res.render('viewer', { title: 'Musings', md:md, markdownContent:data, technical: newtech, musings: newmus})
+          res.render('viewer', { title: rows[0].Name, md:md, markdownContent:data, technical: newtech, musings: newmus})
         })
       })
     }
