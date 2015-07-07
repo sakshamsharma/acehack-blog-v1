@@ -102,6 +102,18 @@ app.get('/almanac', function(req, res) {
   })
 })
 
+app.get('/test', function(req, res) {
+  fs.readFile("public/md/test.md", 'utf8', function(err, data) {
+    if (err) res.render('viewer', { title: 'Error', md:md, markdownContent:"Sorry, the given file does not exist."})
+    else
+      connection.query('SELECT * from Technical', function(err, newtech, techfields){
+        connection.query('SELECT * from Musings', function(err, newmus, fields){
+          res.render('viewer', { title: 'Almanac', md:md, markdownContent:data, technical: newtech, musings: newmus})
+        })
+      })
+  })
+})
+
 app.get('/cv', function(req, res) {
   res.render('cv', { title: 'CV' })
 })
