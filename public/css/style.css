@@ -83,6 +83,12 @@ img.displayed {
   padding: 0px 10px;
   margin-bottom: 10px;
 }
+.sidebar .widget a:hover {
+  text-decoration: none;
+}
+.sidebar .widget .item:hover {
+  background-color: #fff;
+}
 p {
   line-height: 1.8;
 }
