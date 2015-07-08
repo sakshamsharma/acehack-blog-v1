@@ -3,11 +3,13 @@
     h1(style= 'text-align: center;') New Articles
     h3 Technical
     for item in technical
-      p: a(href= "#{item.Url}") #{item.Name}
-      p #{item.Snippet}
-      <hr>
+      div.item
+        p: a(href= "#{item.Url}") #{item.Name}
+        p #{item.Snippet}
+        <hr>
     h3 Musings
     for item in musings
-      p: a(href= "#{item.Url}") #{item.Name}
-      p #{item.Snippet}
-      <hr>
+      div.item
+        p: a(href= "#{item.Url}") #{item.Name}
+        p #{item.Snippet}
+        <hr>
