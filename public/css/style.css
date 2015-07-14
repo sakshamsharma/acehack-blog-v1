@@ -86,8 +86,14 @@ img.displayed {
 .sidebar .widget a:hover {
   text-decoration: none;
 }
+.sidebar .widget .dateofart {
+  text-align: right;
+}
 .sidebar .widget .item:hover {
   background-color: #fff;
+}
+.sidebar .widget #heading p {
+  font-size: 15px;
 }
 p {
   line-height: 1.8;

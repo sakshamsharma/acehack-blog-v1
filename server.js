@@ -6,7 +6,8 @@ var cc          = require('config-multipaas'),
     stylus      = require('stylus'),
     nib         = require('nib'),
     md          = require("node-markdown").Markdown,
-    mysql       = require('mysql')
+    mysql       = require('mysql'),
+    moment      = require('moment')
 
 var config      = cc(),
     app         = express()
@@ -46,9 +47,9 @@ app.get('/', function (req, res)
   fs.readFile("public/md/reveries.md", 'utf8', function(err, data) {
     if (err) res.render('articles', { title: 'Articles', md:md, markdownContent:"Sorry, the given file does not exist."})
     else
-      connection.query('SELECT * from Technical ORDER BY Id DESC LIMIT 6', function(err, newtech, fields){
-        connection.query('SELECT * from Musings ORDER BY Id DESC LIMIT 6', function(err, newmus, fields){
-          res.render('index', { title: 'AceHack', md:md, markdownContent:data, technical: newtech, musings: newmus})
+      connection.query('SELECT * from Technical ORDER BY Id DESC LIMIT 9', function(err, newtech, fields){
+        connection.query('SELECT * from Musings ORDER BY Id DESC LIMIT 9', function(err, newmus, fields){
+          res.render('index', { title: 'AceHack', moment:moment, md:md, markdownContent:data, technical: newtech, musings: newmus})
         })
       })
   })
@@ -57,7 +58,7 @@ app.get('/', function (req, res)
 app.get('/articles', function (req, res) {
   connection.query('SELECT * from Technical', function(err, newtech, fields){
     connection.query('SELECT * from Musings', function(err, newmus, fields){
-      res.render('articles', { title: 'Articles', technical: newtech, musings: newmus})
+      res.render('articles', { title: 'Articles', moment:moment, technical: newtech, musings: newmus})
     })
   })
 })
@@ -67,9 +68,9 @@ app.get('/technical', function(req, res) {
     if (err || rows.length == 0) res.render('error', { title: 'Error', md:md, markdownContent:"Sorry, the given file does not exist."})
     else {
       var data = new Buffer(rows[0].Content, 'base64').toString()
-      connection.query('SELECT * from Technical ORDER BY Id DESC LIMIT 6', function(err, newtech, techfields){
-        connection.query('SELECT * from Musings ORDER BY Id DESC LIMIT 6', function(err, newmus, fields){
-          res.render('viewer', { title: rows[0].Name, md:md, markdownContent:data, technical: newtech, musings: newmus})
+      connection.query('SELECT * from Technical ORDER BY Id DESC LIMIT 9', function(err, newtech, techfields){
+        connection.query('SELECT * from Musings ORDER BY Id DESC LIMIT 9', function(err, newmus, fields){
+          res.render('viewer', { title: rows[0].Name, moment:moment, md:md, markdownContent:data, technical: newtech, musings: newmus})
         })
       })
     }
@@ -81,9 +82,9 @@ app.get('/musings', function(req, res) {
     if (err || rows.length == 0) res.render('error', { title: 'Error', md:md, markdownContent:"Sorry, the given file does not exist."})
     else {
       var data = new Buffer(rows[0].Content, 'base64').toString()
-      connection.query('SELECT * from Technical ORDER BY Id DESC LIMIT 6', function(err, newtech, techfields){
-        connection.query('SELECT * from Musings ORDER BY Id DESC LIMIT 6', function(err, newmus, fields){
-          res.render('viewer', { title: rows[0].Name, md:md, markdownContent:data, technical: newtech, musings: newmus})
+      connection.query('SELECT * from Technical ORDER BY Id DESC LIMIT 9', function(err, newtech, techfields){
+        connection.query('SELECT * from Musings ORDER BY Id DESC LIMIT 9', function(err, newmus, fields){
+          res.render('viewer', { title: rows[0].Name, moment:moment, md:md, markdownContent:data, technical: newtech, musings: newmus})
         })
       })
     }
@@ -94,9 +95,9 @@ app.get('/almanac', function(req, res) {
   fs.readFile("public/md/almanac.md", 'utf8', function(err, data) {
     if (err) res.render('viewer', { title: 'Error', md:md, markdownContent:"Sorry, the given file does not exist."})
     else
-      connection.query('SELECT * from Technical ORDER BY Id DESC LIMIT 6', function(err, newtech, techfields){
-        connection.query('SELECT * from Musings ORDER BY Id DESC LIMIT 6', function(err, newmus, fields){
-          res.render('viewer', { title: 'Almanac', md:md, markdownContent:data, technical: newtech, musings: newmus})
+      connection.query('SELECT * from Technical ORDER BY Id DESC LIMIT 9', function(err, newtech, techfields){
+        connection.query('SELECT * from Musings ORDER BY Id DESC LIMIT 9', function(err, newmus, fields){
+          res.render('viewer', { title: 'Almanac', moment:moment, md:md, markdownContent:data, technical: newtech, musings: newmus})
         })
       })
   })
@@ -106,9 +107,9 @@ app.get('/test', function(req, res) {
   fs.readFile("public/md/almanac.md", 'utf8', function(err, data) {
     if (err) res.render('viewer', { title: 'Error', md:md, markdownContent:"Sorry, the given file does not exist."})
     else
-      connection.query('SELECT * from Technical ORDER BY Id DESC LIMIT 6', function(err, newtech, techfields){
-        connection.query('SELECT * from Musings ORDER BY Id DESC LIMIT 6', function(err, newmus, fields){
-          res.render('viewer', { title: 'Almanac', md:md, markdownContent:data, technical: newtech, musings: newmus})
+      connection.query('SELECT * from Technical ORDER BY Id DESC LIMIT 9', function(err, newtech, techfields){
+        connection.query('SELECT * from Musings ORDER BY Id DESC LIMIT 9', function(err, newmus, fields){
+          res.render('viewer', { title: 'Almanac', moment:moment, md:md, markdownContent:data, technical: newtech, musings: newmus})
         })
       })
   })

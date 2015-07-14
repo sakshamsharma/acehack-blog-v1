@@ -1,15 +1,17 @@
-#sidebar
+sidebar
   .widget
     h1(style= 'text-align: center;') New Articles
     h3 Technical
     for item in technical
-      div.item
-        p: a(href= "#{item.Url}") #{item.Name}
-        p #{item.Snippet}
-        <hr>
+      a(href= "#{item.Url}")
+        div.item
+          p #{item.Name}
+          p.dateofart #{moment(item.CreationDate).format("DD MMM, YYYY")}
+          <hr>
     h3 Musings
     for item in musings
-      div.item
-        p: a(href= "#{item.Url}") #{item.Name}
-        p #{item.Snippet}
-        <hr>
+      a(href= "#{item.Url}")
+        div.item
+          p #{item.Name}
+          p.dateofart #{moment(item.CreationDate).format("DD MMM, YYYY")}
+          <hr>

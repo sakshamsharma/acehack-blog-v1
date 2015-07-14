@@ -13,35 +13,33 @@
   "author": {
     "name": "Saksham",
     "email": "saksham0808@gmail.com",
-    "url":  "http://acehack.com/"
+    "url": "http://acehack.com/"
   },
   "homepage": "http://acehack.com/",
   "repository": {
     "type": "git",
     "url": "https://gitub.com/openshift/nodejs-custom-version-openshift.git"
   },
-
   "engines": {
     "node": ">= 0.12.0",
     "npm": ">= 1.2.0"
   },
-
   "dependencies": {
-    "config-multipaas": "^0.1.0",
-    "express": "4.12.4",
     "body-parser": "1.13.1",
+    "config-multipaas": "^0.1.0",
     "cors": "*",
+    "express": "4.12.4",
     "jade": "*",
-    "stylus": "*",
+    "jstransformer-markdown": "*",
+    "markdown": "*",
+    "moment": "^2.10.3",
+    "mysql": "*",
     "nib": "*",
     "node-markdown": "*",
-    "markdown": "*",
-    "jstransformer-markdown": "*",
-    "mysql": "*"
+    "stylus": "*"
   },
   "devDependencies": {},
   "bundleDependencies": [],
-
   "private": true,
   "scripts": {
     "start": "node server.js"
