@@ -47,8 +47,8 @@ app.get('/', function (req, res)
   fs.readFile("public/md/reveries.md", 'utf8', function(err, data) {
     if (err) res.render('articles', { title: 'Articles', md:md, markdownContent:"Sorry, the given file does not exist."})
     else
-      connection.query('SELECT Name, CreationDate from Technical ORDER BY Id DESC LIMIT 9', function(err, newtech, fields){
-        connection.query('SELECT Name, CreationDate from Musings ORDER BY Id DESC LIMIT 9', function(err, newmus, fields){
+      connection.query('SELECT Name, CreationDate, Url from Technical ORDER BY Id DESC LIMIT 9', function(err, newtech, fields){
+        connection.query('SELECT Name, CreationDate, Url from Musings ORDER BY Id DESC LIMIT 9', function(err, newmus, fields){
           var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
           res.render('index', { url: fullUrl, title: 'AceHack', moment:moment, md:md, markdownContent:data, technical: newtech, musings: newmus})
         })
@@ -69,8 +69,8 @@ app.get('/technical', function(req, res) {
     if (err || rows.length == 0) res.render('error', { title: 'Error', md:md, markdownContent:"Sorry, the given file does not exist."})
     else {
       var data = new Buffer(rows[0].Content, 'base64').toString()
-      connection.query('SELECT Name, CreationDate from Technical ORDER BY Id DESC LIMIT 9', function(err, newtech, techfields){
-        connection.query('SELECT Name, CreationDate from Musings ORDER BY Id DESC LIMIT 9', function(err, newmus, fields){
+      connection.query('SELECT Name, CreationDate, Url from Technical ORDER BY Id DESC LIMIT 9', function(err, newtech, techfields){
+        connection.query('SELECT Name, CreationDate, Url from Musings ORDER BY Id DESC LIMIT 9', function(err, newmus, fields){
           var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
           res.render('viewer', { url: fullUrl, title: rows[0].Name, moment:moment, md:md, markdownContent:data, technical: newtech, musings: newmus})
         })
@@ -84,8 +84,8 @@ app.get('/musings', function(req, res) {
     if (err || rows.length == 0) res.render('error', { title: 'Error', md:md, markdownContent:"Sorry, the given file does not exist."})
     else {
       var data = new Buffer(rows[0].Content, 'base64').toString()
-      connection.query('SELECT Name, CreationDate from Technical ORDER BY Id DESC LIMIT 9', function(err, newtech, techfields){
-        connection.query('SELECT Name, CreationDate from Musings ORDER BY Id DESC LIMIT 9', function(err, newmus, fields){
+      connection.query('SELECT Name, CreationDate, Url from Technical ORDER BY Id DESC LIMIT 9', function(err, newtech, techfields){
+        connection.query('SELECT Name, CreationDate, Url from Musings ORDER BY Id DESC LIMIT 9', function(err, newmus, fields){
           var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
           res.render('viewer', { url: fullUrl, title: rows[0].Name, moment:moment, md:md, markdownContent:data, technical: newtech, musings: newmus})
         })
@@ -98,8 +98,8 @@ app.get('/almanac', function(req, res) {
   fs.readFile("public/md/almanac.md", 'utf8', function(err, data) {
     if (err) res.render('viewer', { title: 'Error', md:md, markdownContent:"Sorry, the given file does not exist."})
     else
-      connection.query('SELECT Name, CreationDate from Technical ORDER BY Id DESC LIMIT 9', function(err, newtech, techfields){
-        connection.query('SELECT Name, CreationDate from Musings ORDER BY Id DESC LIMIT 9', function(err, newmus, fields){
+      connection.query('SELECT Name, CreationDate, Url from Technical ORDER BY Id DESC LIMIT 9', function(err, newtech, techfields){
+        connection.query('SELECT Name, CreationDate, Url from Musings ORDER BY Id DESC LIMIT 9', function(err, newmus, fields){
           var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
           res.render('viewer', { url: fullUrl, title: 'Almanac', moment:moment, md:md, markdownContent:data, technical: newtech, musings: newmus})
         })
@@ -111,8 +111,8 @@ app.get('/test', function(req, res) {
   fs.readFile("public/md/almanac.md", 'utf8', function(err, data) {
     if (err) res.render('viewer', { title: 'Error', md:md, markdownContent:"Sorry, the given file does not exist."})
     else
-      connection.query('SELECT Name, CreationDate from Technical ORDER BY Id DESC LIMIT 9', function(err, newtech, techfields){
-        connection.query('SELECT Name, CreationDate from Musings ORDER BY Id DESC LIMIT 9', function(err, newmus, fields){
+      connection.query('SELECT Name, CreationDate, Url from Technical ORDER BY Id DESC LIMIT 9', function(err, newtech, techfields){
+        connection.query('SELECT Name, CreationDate, Url from Musings ORDER BY Id DESC LIMIT 9', function(err, newmus, fields){
           var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
           res.render('viewer', { url: fullUrl, title: 'Almanac', moment:moment, md:md, markdownContent:data, technical: newtech, musings: newmus})
         })
