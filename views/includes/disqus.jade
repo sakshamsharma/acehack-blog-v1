@@ -8,5 +8,8 @@
   span.st_evernote_large(displayText='Evernote')
   span.st_pocket_large(displayText='Pocket')
   span.st_whatsapp_large(displayText='WhatsApp')
-  div(id= "disqus_thread")
-  script(src= "/js/disqus.js")
+
+  //-div(id= "disqus_thread")
+  //-script(src= "/js/disqus.js")
+  script(src= "https://apis.google.com/js/plusone.js")
+  div.g-comments(data-href='#{url}', data-width="642", data-first_party_property="BLOGGER", data-view_type="FILTERED_POSTMOD")

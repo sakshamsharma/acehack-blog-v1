@@ -49,7 +49,8 @@ app.get('/', function (req, res)
     else
       connection.query('SELECT Name, CreationDate from Technical ORDER BY Id DESC LIMIT 9', function(err, newtech, fields){
         connection.query('SELECT Name, CreationDate from Musings ORDER BY Id DESC LIMIT 9', function(err, newmus, fields){
-          res.render('index', { title: 'AceHack', moment:moment, md:md, markdownContent:data, technical: newtech, musings: newmus})
+          var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+          res.render('index', { url: fullUrl, title: 'AceHack', moment:moment, md:md, markdownContent:data, technical: newtech, musings: newmus})
         })
       })
   })
@@ -70,7 +71,8 @@ app.get('/technical', function(req, res) {
       var data = new Buffer(rows[0].Content, 'base64').toString()
       connection.query('SELECT Name, CreationDate from Technical ORDER BY Id DESC LIMIT 9', function(err, newtech, techfields){
         connection.query('SELECT Name, CreationDate from Musings ORDER BY Id DESC LIMIT 9', function(err, newmus, fields){
-          res.render('viewer', { title: rows[0].Name, moment:moment, md:md, markdownContent:data, technical: newtech, musings: newmus})
+          var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+          res.render('viewer', { url: fullUrl, title: rows[0].Name, moment:moment, md:md, markdownContent:data, technical: newtech, musings: newmus})
         })
       })
     }
@@ -84,7 +86,8 @@ app.get('/musings', function(req, res) {
       var data = new Buffer(rows[0].Content, 'base64').toString()
       connection.query('SELECT Name, CreationDate from Technical ORDER BY Id DESC LIMIT 9', function(err, newtech, techfields){
         connection.query('SELECT Name, CreationDate from Musings ORDER BY Id DESC LIMIT 9', function(err, newmus, fields){
-          res.render('viewer', { title: rows[0].Name, moment:moment, md:md, markdownContent:data, technical: newtech, musings: newmus})
+          var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+          res.render('viewer', { url: fullUrl, title: rows[0].Name, moment:moment, md:md, markdownContent:data, technical: newtech, musings: newmus})
         })
       })
     }
@@ -97,7 +100,8 @@ app.get('/almanac', function(req, res) {
     else
       connection.query('SELECT Name, CreationDate from Technical ORDER BY Id DESC LIMIT 9', function(err, newtech, techfields){
         connection.query('SELECT Name, CreationDate from Musings ORDER BY Id DESC LIMIT 9', function(err, newmus, fields){
-          res.render('viewer', { title: 'Almanac', moment:moment, md:md, markdownContent:data, technical: newtech, musings: newmus})
+          var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+          res.render('viewer', { url: fullUrl, title: 'Almanac', moment:moment, md:md, markdownContent:data, technical: newtech, musings: newmus})
         })
       })
   })
@@ -109,7 +113,8 @@ app.get('/test', function(req, res) {
     else
       connection.query('SELECT Name, CreationDate from Technical ORDER BY Id DESC LIMIT 9', function(err, newtech, techfields){
         connection.query('SELECT Name, CreationDate from Musings ORDER BY Id DESC LIMIT 9', function(err, newmus, fields){
-          res.render('viewer', { title: 'Almanac', moment:moment, md:md, markdownContent:data, technical: newtech, musings: newmus})
+          var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+          res.render('viewer', { url: fullUrl, title: 'Almanac', moment:moment, md:md, markdownContent:data, technical: newtech, musings: newmus})
         })
       })
   })
