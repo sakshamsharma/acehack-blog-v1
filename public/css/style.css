@@ -55,9 +55,6 @@ img.displayed {
   margin-right: auto;
   margin-bottom: 20px;
 }
-.sidebar {
-  float: left;
-}
 .sidebar .widget {
   -webkit-border-radius: 3px;
   border-radius: 3px;
