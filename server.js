@@ -7,10 +7,10 @@ var cc          = require('config-multipaas'),
     nib         = require('nib'),
     md          = require("node-markdown").Markdown,
     mysql       = require('mysql'),
-    moment      = require('moment')
+    moment      = require('moment');
 
 var config      = cc(),
-    app         = express()
+    app         = express();
 
 
 var mysqlHost = process.env.OPENSHIFT_MYSQL_DB_HOST || 'localhost';
@@ -32,110 +32,109 @@ app.use(express.static('static'));
 function compile(str, path) {
   return stylus(str)
     .set('filename', path)
-    .use(nib())
+    .use(nib());
 }
-app.set('views', __dirname + '/views')
-app.set('view engine', 'jade')
-app.use(stylus.middleware({ 
-  src: __dirname + '/public'
-  , compile: compile
-}))
-app.use(express.static(__dirname + '/public'))
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jade');
+app.use(stylus.middleware({
+  src: __dirname + '/public', compile: compile
+}));
+app.use(express.static(__dirname + '/public'));
 
 app.get('/', function (req, res)
 {
   fs.readFile("public/md/reveries.md", 'utf8', function(err, data) {
-    if (err) res.render('articles', { title: 'Articles', md:md, markdownContent:"Sorry, the given file does not exist."})
+    if (err) res.render('articles', { title: 'Articles', md:md, markdownContent:"Sorry, the given file does not exist."});
     else
       connection.query('SELECT Name, CreationDate, Url from Technical ORDER BY Id DESC LIMIT 9', function(err, newtech, fields){
         connection.query('SELECT Name, CreationDate, Url from Musings ORDER BY Id DESC LIMIT 9', function(err, newmus, fields){
           var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
-          res.render('index', { url: fullUrl, title: 'AceHack', moment:moment, md:md, markdownContent:data, technical: newtech, musings: newmus})
-        })
-      })
-  })
+          res.render('index', { url: fullUrl, title: 'AceHack', moment:moment, md:md, markdownContent:data, technical: newtech, musings: newmus});
+        });
+      });
+  });
 });
 
 app.get('/articles', function (req, res) {
   connection.query('SELECT * from Technical', function(err, newtech, fields){
     connection.query('SELECT * from Musings', function(err, newmus, fields){
-      res.render('articles', { title: 'Articles', moment:moment, technical: newtech, musings: newmus})
-    })
-  })
-})
+      res.render('articles', { title: 'Articles', moment:moment, technical: newtech, musings: newmus});
+    });
+  });
+});
 
 app.get('/technical', function(req, res) {
   connection.query('SELECT * from Technical WHERE Url = \'/technical?aname=' + req.query.aname + '\'', function(err, rows, fields){
-    if (err || rows.length == 0) res.render('error', { title: 'Error', md:md, markdownContent:"Sorry, the given file does not exist."})
+    if (err || rows.length === 0) res.render('error', { title: 'Error', md:md, markdownContent:"Sorry, the given file does not exist."});
     else {
-      var data = new Buffer(rows[0].Content, 'base64').toString()
+      var data = new Buffer(rows[0].Content, 'base64').toString();
       connection.query('SELECT Name, CreationDate, Url from Technical ORDER BY Id DESC LIMIT 9', function(err, newtech, techfields){
         connection.query('SELECT Name, CreationDate, Url from Musings ORDER BY Id DESC LIMIT 9', function(err, newmus, fields){
           var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
-          res.render('viewer', { url: fullUrl, title: rows[0].Name, moment:moment, md:md, markdownContent:data, technical: newtech, musings: newmus})
-        })
-      })
+          res.render('viewer', { url: fullUrl, title: rows[0].Name, moment:moment, md:md, markdownContent:data, technical: newtech, musings: newmus});
+        });
+      });
     }
-  })
-})
+  });
+});
 
 app.get('/musings', function(req, res) {
   connection.query('SELECT * from Musings WHERE Url = \'/musings?aname=' + req.query.aname + '\'', function(err, rows, fields){
-    if (err || rows.length == 0) res.render('error', { title: 'Error', md:md, markdownContent:"Sorry, the given file does not exist."})
+    if (err || rows.length === 0) res.render('error', { title: 'Error', md:md, markdownContent:"Sorry, the given file does not exist."});
     else {
-      var data = new Buffer(rows[0].Content, 'base64').toString()
+      var data = new Buffer(rows[0].Content, 'base64').toString();
       connection.query('SELECT Name, CreationDate, Url from Technical ORDER BY Id DESC LIMIT 9', function(err, newtech, techfields){
         connection.query('SELECT Name, CreationDate, Url from Musings ORDER BY Id DESC LIMIT 9', function(err, newmus, fields){
           var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
-          res.render('viewer', { url: fullUrl, title: rows[0].Name, moment:moment, md:md, markdownContent:data, technical: newtech, musings: newmus})
-        })
-      })
+          res.render('viewer', { url: fullUrl, title: rows[0].Name, moment:moment, md:md, markdownContent:data, technical: newtech, musings: newmus});
+        });
+      });
     }
-  })
-})
+  });
+});
 
 app.get('/almanac', function(req, res) {
   fs.readFile("public/md/almanac.md", 'utf8', function(err, data) {
-    if (err) res.render('viewer', { title: 'Error', md:md, markdownContent:"Sorry, the given file does not exist."})
+    if (err) res.render('viewer', { title: 'Error', md:md, markdownContent:"Sorry, the given file does not exist."});
     else
       connection.query('SELECT Name, CreationDate, Url from Technical ORDER BY Id DESC LIMIT 9', function(err, newtech, techfields){
         connection.query('SELECT Name, CreationDate, Url from Musings ORDER BY Id DESC LIMIT 9', function(err, newmus, fields){
           var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
-          res.render('viewer', { url: fullUrl, title: 'Almanac', moment:moment, md:md, markdownContent:data, technical: newtech, musings: newmus})
-        })
-      })
-  })
-})
+          res.render('viewer', { url: fullUrl, title: 'Almanac', moment:moment, md:md, markdownContent:data, technical: newtech, musings: newmus});
+        });
+      });
+  });
+});
 
 app.get('/test', function(req, res) {
   fs.readFile("public/md/almanac.md", 'utf8', function(err, data) {
-    if (err) res.render('viewer', { title: 'Error', md:md, markdownContent:"Sorry, the given file does not exist."})
+    if (err) res.render('viewer', { title: 'Error', md:md, markdownContent:"Sorry, the given file does not exist."});
     else
       connection.query('SELECT Name, CreationDate, Url from Technical ORDER BY Id DESC LIMIT 9', function(err, newtech, techfields){
         connection.query('SELECT Name, CreationDate, Url from Musings ORDER BY Id DESC LIMIT 9', function(err, newmus, fields){
           var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
-          res.render('viewer', { url: fullUrl, title: 'Almanac', moment:moment, md:md, markdownContent:data, technical: newtech, musings: newmus})
-        })
-      })
-  })
-})
+          res.render('viewer', { url: fullUrl, title: 'Almanac', moment:moment, md:md, markdownContent:data, technical: newtech, musings: newmus});
+        });
+      });
+  });
+});
 
 app.get('/cv', function(req, res) {
-  res.render('cv', { title: 'CV' })
-})
+  res.render('cv', { title: 'CV' });
+});
 
 app.get('/cvnew', function(req, res) {
-  res.render('cvnew', { title: 'CV' })
-})
+  res.render('cvnew', { title: 'CV' });
+});
 
 app.get('/contact', function(req, res) {
-  res.render('contact', { title: 'Contact Me' })
-})
+  res.render('contact', { title: 'Contact Me' });
+});
 
 app.use(function(req, res) {
-  res.redirect(301, 'http://www.acehack.org')
-})
+  res.redirect(301, 'http://www.acehack.org');
+});
 
 app.listen(config.get('PORT'), config.get('IP'), function () {
-  console.log("Listening on "+config.get('IP')+", port "+config.get('PORT'))
+  console.log("Listening on "+config.get('IP')+", port "+config.get('PORT'));
 });
