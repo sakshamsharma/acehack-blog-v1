@@ -1,6 +1,6 @@
 DEPRECATED
 ==========
-Visit http://github.com/sakshamsharma/sakshamsharma.github.io
+Visit https://github.com/sakshamsharma/acehack
 or http://acehack.org instead.
 
 # AceHack
